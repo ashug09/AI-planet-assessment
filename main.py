@@ -69,6 +69,10 @@ def user_input(user_question: str) -> str:
     response = chain({"input_documents": docs, "question": user_question}, return_only_outputs=True)
     return response['output_text']
 
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
 @app.post("/upload/")
 async def upload_pdf(files: List[UploadFile] = File(...)):
     try:
